@@ -1,0 +1,8 @@
+uuid: bdf974c7-7bea-4a36-a55d-180b9b8871f5
+langcode: es
+status: true
+dependencies: {  }
+id: fecha_simple_formato_local
+label: 'Fecha simple formato local'
+locked: false
+pattern: d/m/Y

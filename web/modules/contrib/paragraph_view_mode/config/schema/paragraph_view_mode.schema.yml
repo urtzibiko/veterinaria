@@ -1,0 +1,28 @@
+field.storage_settings.paragraph_view_mode:
+  type: field.storage_settings.string
+  label: 'Paragraph view mode storage settings'
+
+field.formatter.settings.paragraph_view_mode:
+  type: field.formatter.settings.text_default
+  label: 'Paragraph View Mode formatter settings'
+
+field.widget.settings.paragraph_view_mode:
+  type: field.widget.settings.string_textfield
+  label: 'Paragraph view mode widget settings'
+  mapping:
+    view_modes:
+      type: sequence
+      label: 'Available view modes'
+      sequence:
+        type: string
+        label: 'View mode'
+    default_view_mode:
+      type: string
+      label: 'Default value'
+    form_mode_bind:
+      type: 'boolean'
+      label: 'Bind with the form mode'
+
+field.value.paragraph_view_mode:
+  type: field.value.string
+  label: 'Paragraph view mode'

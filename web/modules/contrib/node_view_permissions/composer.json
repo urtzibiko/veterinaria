@@ -1,0 +1,8 @@
+{
+    "name": "drupal/node_view_permissions",
+    "type": "drupal-module",
+    "description": "enables permissions 'View own content' and 'View any content' for each content type on permissions page",
+    "homepage": "http://drupal.org/project/node_view_permissions",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev"
+}

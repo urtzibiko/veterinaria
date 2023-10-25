@@ -1,0 +1,23 @@
+uuid: c1750617-e987-4446-9af9-1442a8e7c61b
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_no_microchip
+    - node.type.mascota
+id: node.mascota.field_no_microchip
+field_name: field_no_microchip
+entity_type: node
+bundle: mascota
+label: 'Nº microchip'
+description: 'Número del microchip (si procede)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

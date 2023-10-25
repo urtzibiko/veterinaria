@@ -1,0 +1,19 @@
+uuid: 55b3a974-1dc6-4adc-acc7-74e297a4e61b
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_entradilla
+    - paragraphs.paragraphs_type.hero
+id: paragraph.hero.field_entradilla
+field_name: field_entradilla
+entity_type: paragraph
+bundle: hero
+label: Entradilla
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

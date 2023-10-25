@@ -1,0 +1,22 @@
+uuid: 7e00c408-a748-4863-827b-d335bd94352f
+langcode: es
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - neith
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: neith_help
+theme: neith
+region: sidebar_first
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Ayuda
+  label_display: '0'
+  provider: help
+visibility: {  }

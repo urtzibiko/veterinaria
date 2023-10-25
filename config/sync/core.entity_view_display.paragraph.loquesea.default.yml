@@ -1,0 +1,21 @@
+uuid: 27525565-40ed-46f6-97eb-cb32318bc82f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.loquesea.field_loquesea
+    - paragraphs.paragraphs_type.loquesea
+id: paragraph.loquesea.default
+targetEntityType: paragraph
+bundle: loquesea
+mode: default
+content:
+  field_loquesea:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

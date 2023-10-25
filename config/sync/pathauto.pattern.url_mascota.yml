@@ -1,0 +1,22 @@
+uuid: 69a7af5e-e248-44e3-b758-086f0c0bd50b
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: url_mascota
+label: 'URL mascota'
+type: 'canonical_entities:node'
+pattern: '/mascota/[node:field_id_mascota]'
+selection_criteria:
+  6558729d-9130-48ff-a179-08176d6a2457:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 6558729d-9130-48ff-a179-08176d6a2457
+    context_mapping:
+      node: node
+    bundles:
+      mascota: mascota
+selection_logic: and
+weight: -5
+relationships: {  }

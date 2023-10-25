@@ -1,0 +1,22 @@
+uuid: 470d6981-3f5c-43e3-8641-4801c22fe203
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - neith
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: neith_powered
+theme: neith
+region: sidebar_first
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Funciona con Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

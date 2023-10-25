@@ -1,0 +1,11 @@
+uuid: e3ba8d61-40b7-43f5-8121-c82eef88e6db
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.especie
+id: taxonomy_term.especie
+target_entity_type_id: taxonomy_term
+target_bundle: especie
+default_langcode: site_default
+language_alterable: false

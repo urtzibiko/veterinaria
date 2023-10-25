@@ -1,0 +1,42 @@
+{
+  "name": "educa",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "node -e \"if (process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('Use yarn for installing: https://yarnpkg.com/en/docs/install')\"",
+    "postinstall": "find node_modules/ -name '*.info' -type f -delete",
+    "start": "gulp",
+    "deploy": "gulp build && firebase deploy"
+  },
+  "dependencies": {
+    "bootstrap": "4.0.0-alpha.2",
+    "tether": "1.3.1",
+    "magnific-popup": "1.1.0",
+    "bootstrap-last": "npm:bootstrap@4.0.0-beta.3",
+    "popper.js": "^1.12.9",
+    "particles.js": "^2.0.0",
+    "slick-carousel": "https://github.com/cleverage/slick.git#ec65160"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "eslint": "^2.13.1",
+    "firebase-tools": "^3.13.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cli": "^1.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "node-notifier": "^4.6.1",
+    "require-dir": "^0.3.2",
+    "run-sequence": "^1.2.2",
+    "sass-rem": "^2.0.1"
+  },
+  "engines": {
+    "node": ">= 4"
+  }
+}

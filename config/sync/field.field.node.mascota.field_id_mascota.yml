@@ -1,0 +1,23 @@
+uuid: 441b0ca8-0f44-4a6e-a9b5-4a34c64955bf
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_id_mascota
+    - node.type.mascota
+id: node.mascota.field_id_mascota
+field_name: field_id_mascota
+entity_type: node
+bundle: mascota
+label: 'id mascota'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

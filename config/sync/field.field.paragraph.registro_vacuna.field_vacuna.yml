@@ -1,0 +1,29 @@
+uuid: 85eb5975-2cfe-4bbb-b608-eedf378d3d17
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_vacuna
+    - paragraphs.paragraphs_type.registro_vacuna
+    - taxonomy.vocabulary.vacunas
+id: paragraph.registro_vacuna.field_vacuna
+field_name: field_vacuna
+entity_type: paragraph
+bundle: registro_vacuna
+label: Vacuna
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      vacunas: vacunas
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

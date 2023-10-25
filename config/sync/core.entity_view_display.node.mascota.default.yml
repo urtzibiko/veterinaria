@@ -1,0 +1,94 @@
+uuid: d3c292cc-d9ee-488e-b616-54b7d61d2b91
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.mascota.field_color
+    - field.field.node.mascota.field_fecha_de_nacimiento
+    - field.field.node.mascota.field_foto_mascota
+    - field.field.node.mascota.field_id_mascota
+    - field.field.node.mascota.field_no_microchip
+    - field.field.node.mascota.field_nombre
+    - field.field.node.mascota.field_raza_tipo
+    - field.field.node.mascota.field_tipo_de_mascota
+    - node.type.mascota
+  module:
+    - datetime
+    - image
+    - layout_builder
+    - layout_discovery
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.mascota.default
+targetEntityType: node
+bundle: mascota
+mode: default
+content:
+  field_color:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_fecha_de_nacimiento:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_foto_mascota:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_no_microchip:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_nombre:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_raza_tipo:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_tipo_de_mascota:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  field_id_mascota: true
+  langcode: true
+  links: true

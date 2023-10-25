@@ -1,0 +1,41 @@
+uuid: 554b4de2-e305-408b-bb0a-9f1e0763bade
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.mascota.field_color
+    - field.field.node.mascota.field_dueno
+    - field.field.node.mascota.field_fecha_de_nacimiento
+    - field.field.node.mascota.field_foto_mascota
+    - field.field.node.mascota.field_id_mascota
+    - field.field.node.mascota.field_no_microchip
+    - field.field.node.mascota.field_nombre
+    - field.field.node.mascota.field_raza_tipo
+    - field.field.node.mascota.field_tipo_de_mascota
+    - field.field.node.mascota.field_vacunas
+    - node.type.mascota
+  module:
+    - user
+id: node.mascota.teaser
+targetEntityType: node
+bundle: mascota
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_color: true
+  field_dueno: true
+  field_fecha_de_nacimiento: true
+  field_foto_mascota: true
+  field_id_mascota: true
+  field_no_microchip: true
+  field_nombre: true
+  field_raza_tipo: true
+  field_tipo_de_mascota: true
+  field_vacunas: true
+  langcode: true

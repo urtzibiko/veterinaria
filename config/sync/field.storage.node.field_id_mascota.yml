@@ -1,0 +1,20 @@
+uuid: 2668789f-082e-4861-a8c9-09c577962d68
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_id_mascota
+field_name: field_id_mascota
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

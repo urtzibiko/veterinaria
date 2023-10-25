@@ -1,0 +1,22 @@
+uuid: f4c2cedc-be71-4026-aee2-5382a6b23de2
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - neith
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: neith_content
+theme: neith
+region: content
+weight: -5
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Contenido principal de la página'
+  label_display: '0'
+  provider: system
+visibility: {  }

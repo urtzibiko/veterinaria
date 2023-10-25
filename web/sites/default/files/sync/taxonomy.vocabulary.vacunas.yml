@@ -1,0 +1,8 @@
+uuid: 8cd13a95-bffd-49d2-a503-19aa01568575
+langcode: es
+status: true
+dependencies: {  }
+name: Vacunas
+vid: vacunas
+description: ''
+weight: -9

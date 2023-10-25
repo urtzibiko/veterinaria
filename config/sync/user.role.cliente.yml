@@ -1,0 +1,19 @@
+uuid: ecf47e4d-b86b-45e4-b93d-6116d921e3ee
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.mascota
+  module:
+    - node
+    - node_view_permissions
+id: cliente
+label: cliente
+weight: 4
+is_admin: null
+permissions:
+  - 'change own username'
+  - 'create mascota content'
+  - 'delete own mascota content'
+  - 'edit own mascota content'
+  - 'view own mascota content'

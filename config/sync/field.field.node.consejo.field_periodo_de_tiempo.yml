@@ -1,0 +1,19 @@
+uuid: 1282c86a-7bb4-4049-b49c-2aeb89748556
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_periodo_de_tiempo
+    - node.type.consejo
+id: node.consejo.field_periodo_de_tiempo
+field_name: field_periodo_de_tiempo
+entity_type: node
+bundle: consejo
+label: 'Período de tiempo'
+description: 'En qué período de tiempo ocurre.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

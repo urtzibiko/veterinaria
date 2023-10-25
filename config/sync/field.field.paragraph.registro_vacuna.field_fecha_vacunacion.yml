@@ -1,0 +1,21 @@
+uuid: d54527ca-9baa-4c42-8021-8022ee508b6c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fecha_vacunacion
+    - paragraphs.paragraphs_type.registro_vacuna
+  module:
+    - datetime
+id: paragraph.registro_vacuna.field_fecha_vacunacion
+field_name: field_fecha_vacunacion
+entity_type: paragraph
+bundle: registro_vacuna
+label: 'Fecha vacunacion'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

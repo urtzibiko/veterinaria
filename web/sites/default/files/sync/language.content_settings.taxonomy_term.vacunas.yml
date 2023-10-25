@@ -1,0 +1,11 @@
+uuid: 9935ff90-989a-45bb-a809-7258fba25dbf
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.vacunas
+id: taxonomy_term.vacunas
+target_entity_type_id: taxonomy_term
+target_bundle: vacunas
+default_langcode: site_default
+language_alterable: false

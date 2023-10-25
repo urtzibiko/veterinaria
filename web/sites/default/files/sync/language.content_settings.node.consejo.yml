@@ -1,0 +1,11 @@
+uuid: 4d659d24-0267-465f-a7e7-76dce776e9ad
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.consejo
+id: node.consejo
+target_entity_type_id: node
+target_bundle: consejo
+default_langcode: site_default
+language_alterable: false

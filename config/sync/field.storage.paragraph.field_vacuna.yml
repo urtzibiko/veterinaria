@@ -1,0 +1,20 @@
+uuid: e9eb8910-0b6a-4a58-ac83-ef76b6aed219
+langcode: es
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_vacuna
+field_name: field_vacuna
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

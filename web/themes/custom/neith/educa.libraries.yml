@@ -1,0 +1,11 @@
+base:
+  version: 1.0
+  css:
+    theme:
+      dist/css/style.css: {}
+  js:
+      dist/js/vendor.js: {}
+      dist/js/app.js: {}
+
+  dependencies:
+    - core/jquery

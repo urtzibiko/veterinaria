@@ -1,0 +1,10 @@
+uuid: dec5e2b5-a9e9-4eed-b940-bc5120bf39c7
+langcode: es
+status: true
+dependencies: {  }
+id: hero
+label: Hero
+icon_uuid: null
+icon_default: null
+description: 'Paragraph para la main'
+behavior_plugins: {  }

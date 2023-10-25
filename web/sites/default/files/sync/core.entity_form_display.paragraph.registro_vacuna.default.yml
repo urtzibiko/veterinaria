@@ -1,0 +1,30 @@
+uuid: 9cb9f70a-19e1-4ed8-acae-bbcb9d191ac4
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.registro_vacuna.field_fecha_vacunacion
+    - field.field.paragraph.registro_vacuna.field_vacuna
+    - paragraphs.paragraphs_type.registro_vacuna
+  module:
+    - datetime
+id: paragraph.registro_vacuna.default
+targetEntityType: paragraph
+bundle: registro_vacuna
+mode: default
+content:
+  field_fecha_vacunacion:
+    type: datetime_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_vacuna:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

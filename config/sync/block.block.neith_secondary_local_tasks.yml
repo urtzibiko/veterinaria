@@ -1,0 +1,22 @@
+uuid: 74db5049-5772-4a38-b1a4-8420d9ec9b3d
+langcode: es
+status: true
+dependencies:
+  theme:
+    - neith
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: neith_secondary_local_tasks
+theme: neith
+region: highlighted
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Solapas secundarias'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

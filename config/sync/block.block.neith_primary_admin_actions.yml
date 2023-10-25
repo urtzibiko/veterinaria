@@ -1,0 +1,20 @@
+uuid: 3c19b0f2-bd57-45b7-8f86-09bfcfe002ec
+langcode: es
+status: true
+dependencies:
+  theme:
+    - neith
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: neith_primary_admin_actions
+theme: neith
+region: highlighted
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Acciones principales de administración'
+  label_display: '0'
+  provider: core
+visibility: {  }

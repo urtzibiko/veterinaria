@@ -1,0 +1,51 @@
+uuid: b29d8e1b-1756-4d7c-b113-6ed1190fb267
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.consejo.body
+    - field.field.node.consejo.field_imagen_del_consejo
+    - field.field.node.consejo.field_periodo_de_tiempo
+    - node.type.consejo
+  module:
+    - image
+    - text
+    - user
+id: node.consejo.default
+targetEntityType: node
+bundle: consejo
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_imagen_del_consejo:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_periodo_de_tiempo:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  langcode: true

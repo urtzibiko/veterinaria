@@ -1,0 +1,20 @@
+uuid: 5d85c730-7a18-4e01-984c-1f4775db8fd1
+langcode: es
+status: true
+dependencies:
+  theme:
+    - neith
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: neith_page_title
+theme: neith
+region: content
+weight: -6
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Título de la página'
+  label_display: '0'
+  provider: core
+visibility: {  }

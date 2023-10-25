@@ -1,0 +1,20 @@
+uuid: d1edcb1e-044e-4128-bdd1-c70104e917af
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - user
+id: node.field_dueno
+field_name: field_dueno
+entity_type: node
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

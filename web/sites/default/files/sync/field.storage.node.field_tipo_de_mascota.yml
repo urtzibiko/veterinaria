@@ -1,0 +1,20 @@
+uuid: d3b930b4-87cf-4b31-b80b-165ba4024f6a
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_tipo_de_mascota
+field_name: field_tipo_de_mascota
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

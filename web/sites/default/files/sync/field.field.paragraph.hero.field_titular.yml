@@ -1,0 +1,19 @@
+uuid: b21f904b-2cd1-41bc-8c32-2988cf14ede9
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_titular
+    - paragraphs.paragraphs_type.hero
+id: paragraph.hero.field_titular
+field_name: field_titular
+entity_type: paragraph
+bundle: hero
+label: Titular
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

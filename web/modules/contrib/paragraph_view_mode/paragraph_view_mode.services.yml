@@ -1,0 +1,15 @@
+services:
+  paragraph_view_mode.storage_manager:
+    class: Drupal\paragraph_view_mode\StorageManager
+    arguments:
+      - '@entity_type.manager'
+
+  paragraph_view_mode.checker.widget_settings:
+    class: Drupal\paragraph_view_mode\Checker\WidgetSettingsChecker
+    arguments:
+      - '@entity_display.repository'
+
+  paragraph_view_mode.matcher.display_mode:
+    class: Drupal\paragraph_view_mode\Matcher\DisplayModeMatcher
+    arguments:
+      - '@paragraph_view_mode.checker.widget_settings'

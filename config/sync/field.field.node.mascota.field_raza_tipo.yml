@@ -1,0 +1,19 @@
+uuid: 3a89f5cd-e1d5-405d-a613-bd9dd36d8b95
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_raza_tipo
+    - node.type.mascota
+id: node.mascota.field_raza_tipo
+field_name: field_raza_tipo
+entity_type: node
+bundle: mascota
+label: Raza/tipo
+description: 'Detalles específicos de la mascota'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

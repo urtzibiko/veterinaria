@@ -1,0 +1,86 @@
+uuid: 14334584-8e55-4faf-8e4e-bb1d8f8e843d
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.registro_vacuna.field_fecha_vacunacion
+    - field.field.paragraph.registro_vacuna.field_vacuna
+    - paragraphs.paragraphs_type.registro_vacuna
+  module:
+    - datetime
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 50-50
+        components:
+          b3d00401-18d6-4203-90f7-e1403de8b073:
+            uuid: b3d00401-18d6-4203-90f7-e1403de8b073
+            region: first
+            configuration:
+              id: 'field_block:paragraph:registro_vacuna:field_fecha_vacunacion'
+              label: 'Fecha vacunacion'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: datetime_default
+                label: hidden
+                settings:
+                  timezone_override: ''
+                  format_type: fecha_simple_formato_local
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          3c18ebe9-76ae-4790-8a2d-66f7c5eec153:
+            uuid: 3c18ebe9-76ae-4790-8a2d-66f7c5eec153
+            region: second
+            configuration:
+              id: 'field_block:paragraph:registro_vacuna:field_vacuna'
+              label: Vacuna
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: hidden
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: paragraph.registro_vacuna.default
+targetEntityType: paragraph
+bundle: registro_vacuna
+mode: default
+content:
+  field_fecha_vacunacion:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: html_date
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_vacuna:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

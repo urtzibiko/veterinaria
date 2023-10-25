@@ -1,0 +1,8 @@
+uuid: 685c2c4b-37e4-4102-b1ca-f6d188ef2bc3
+langcode: es
+status: true
+dependencies: {  }
+name: Especie
+vid: especie
+description: 'Especie a la que pertenece la mascota'
+weight: -10

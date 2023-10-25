@@ -1,0 +1,22 @@
+uuid: e489ee4b-94e0-40ed-9a4c-becc72cb6d95
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.consejo
+id: node.consejo.promote
+field_name: promote
+entity_type: node
+bundle: consejo
+label: 'Promocionado a la página principal'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Activado
+  off_label: Desactivado
+field_type: boolean

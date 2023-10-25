@@ -1,0 +1,34 @@
+uuid: 95d09e1b-7190-42ce-8585-4d8919324f5a
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bloques
+    - node.type.page
+    - paragraphs.paragraphs_type.hero
+  module:
+    - entity_reference_revisions
+id: node.page.field_bloques
+field_name: field_bloques
+entity_type: node
+bundle: page
+label: Bloques
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      hero: hero
+    negate: 0
+    target_bundles_drag_drop:
+      hero:
+        weight: 3
+        enabled: true
+      registro_vacuna:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

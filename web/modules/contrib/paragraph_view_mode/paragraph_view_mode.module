@@ -1,0 +1,129 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_view_mode.module functions.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\field\FieldConfigInterface;
+use Drupal\paragraph_view_mode\StorageManagerInterface;
+
+/**
+ * Implements hook_help().
+ */
+function paragraph_view_mode_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.paragraph_view_mode':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module allows to dynamically pick the display mode of the paragraph during adding/editing the paragraph item, by creating a field with available view modes.') . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Enable view mode field on paragraph type') . '</dt>';
+      $output .= '<dd>' . t('Go to edit page of your paragraph type and check option "Enable paragraph view mode field on this paragraph type.". Save.') . '</dd>';
+      $output .= '<dt>' . t('Add field to add/edit form') . '</dt>';
+      $output .= '<dd>' . t('Go to the "Manage form display" tab and place your field anywhere you want (except the disabled section).') . '</dd>';
+      $output .= '<dt>' . t('Widget settings') . '</dt>';
+      $output .= '<dd>' . t('You can configure the field widget, by selecting which view modes you want to allow to view during adding/editing the content. If you do not select any view mode, the "default" will be displayed.') . '</dd>';
+      $output .= '</dl>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_entity_form_mode_alter().
+ */
+function paragraph_view_mode_entity_form_mode_alter(&$form_mode, EntityInterface $entity): void {
+  if (FALSE === is_string($form_mode)) {
+    return;
+  }
+
+  /** @var \Drupal\paragraph_view_mode\Matcher\DisplayModeMatcherInterface $display_matcher */
+  $display_matcher = \Drupal::service('paragraph_view_mode.matcher.display_mode');
+  $mode = $display_matcher->matchFormForModeAndEntity($form_mode, $entity);
+
+  if (is_string($mode)) {
+    $form_mode = $mode;
+  }
+}
+/**
+ * Implements hook_entity_view_mode_alter().
+ */
+function paragraph_view_mode_entity_view_mode_alter(&$view_mode, EntityInterface $entity): void {
+  if (FALSE === is_string($view_mode)) {
+    return;
+  }
+
+  /** @var \Drupal\paragraph_view_mode\Matcher\DisplayModeMatcherInterface $display_matcher */
+  $display_matcher = \Drupal::service('paragraph_view_mode.matcher.display_mode');
+  $mode = $display_matcher->matchViewForModeAndEntity($view_mode, $entity);
+
+  if (is_string($mode)) {
+    $view_mode = $mode;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function paragraph_view_mode_form_paragraphs_type_edit_form_alter(&$form, FormStateInterface $form_state) {
+  $paragraphType = $form_state->getFormObject()->getEntity();
+  $bundle = $paragraphType->getOriginalId();
+
+  /** @var \Drupal\paragraph_view_mode\StorageManagerInterface $storage_manager */
+  $storage_manager = \Drupal::service('paragraph_view_mode.storage_manager');
+
+  $config_name = StorageManagerInterface::CONFIG_NAME;
+  $form[$config_name] = [
+    '#title' => t('@label', ['@label' => StorageManagerInterface::FIELD_LABEL]),
+    '#type' => 'details',
+    '#tree' => TRUE,
+    '#open' => TRUE,
+  ];
+
+  $form[$config_name]['enabled'] = [
+    '#title' => t('Enable @label field on this @type type.', [
+      '@label' => StorageManagerInterface::FIELD_LABEL,
+      '@type' => StorageManagerInterface::ENTITY_TYPE,
+    ]),
+    '#type' => 'checkbox',
+    '#default_value' => $storage_manager->getField($bundle) instanceof FieldConfigInterface,
+  ];
+
+  $form['actions']['submit']['#submit'][] = 'paragraph_view_mode_form_paragraphs_type_edit_form_submit';
+}
+
+/**
+ * Paragraph view mode form submit.
+ *
+ * @param array $form
+ *   Form structure.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state object.
+ */
+function paragraph_view_mode_form_paragraphs_type_edit_form_submit(array &$form, FormStateInterface $form_state) {
+  $paragraphType = $form_state->getFormObject()->getEntity();
+  $bundle = $paragraphType->getOriginalId();
+
+  /** @var \Drupal\paragraph_view_mode\StorageManagerInterface $storage_manager */
+  $storage_manager = \Drupal::service('paragraph_view_mode.storage_manager');
+
+  $config_name = StorageManagerInterface::CONFIG_NAME;
+  $enable = $form_state->getValue([$config_name, 'enabled']);
+  $enabled = $paragraphType->getThirdPartySetting($config_name, 'enabled');
+
+  if (!$enabled && $enable) {
+    $enable = $storage_manager->addField($bundle);
+    if ($enable) {
+      $storage_manager->addToFormDisplay($bundle);
+    }
+  }
+  elseif ($enabled && !$enable) {
+    $storage_manager->deleteField($bundle);
+  }
+
+  $paragraphType->save();
+}

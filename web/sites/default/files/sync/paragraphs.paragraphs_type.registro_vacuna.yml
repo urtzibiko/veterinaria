@@ -1,0 +1,10 @@
+uuid: a4e47b71-54dc-4151-b8bc-46d62fa87f56
+langcode: es
+status: true
+dependencies: {  }
+id: registro_vacuna
+label: 'Registro vacuna'
+icon_uuid: null
+icon_default: null
+description: 'Registro único de fecha y vacuna'
+behavior_plugins: {  }

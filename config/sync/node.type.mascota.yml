@@ -1,0 +1,18 @@
+uuid: dc25522c-4429-4625-994e-cd495f24a218
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Mascota
+type: mascota
+description: 'Datos de la mascota'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

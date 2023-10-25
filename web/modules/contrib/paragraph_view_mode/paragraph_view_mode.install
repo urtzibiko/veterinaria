@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_view_mode installation and update functions.
+ */
+
+/**
+ * Creates paragraph_view_mode field storage during module instalation.
+ *
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ */
+function paragraph_view_mode_install() {
+  /** @var \Drupal\paragraph_view_mode\StorageManagerInterface $storage_manager */
+  $storage_manager = \Drupal::service('paragraph_view_mode.storage_manager');
+  $storage_manager->createFieldStorage();
+}
+
+/**
+ * Unlock the paragraph_view_mode field.
+ */
+function paragraph_view_mode_update_8001() {
+  /** @var \Drupal\paragraph_view_mode\StorageManagerInterface $storage_manager */
+  $storage_manager = \Drupal::service('paragraph_view_mode.storage_manager');
+  $storage_manager
+    ->getFieldStorage()
+    ->setLocked(FALSE)
+    ->save();
+}

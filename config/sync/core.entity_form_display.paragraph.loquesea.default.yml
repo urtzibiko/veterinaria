@@ -1,0 +1,23 @@
+uuid: dbf65a2f-3fca-40c2-8df8-7fcb89a430d1
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.loquesea.field_loquesea
+    - paragraphs.paragraphs_type.loquesea
+id: paragraph.loquesea.default
+targetEntityType: paragraph
+bundle: loquesea
+mode: default
+content:
+  field_loquesea:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

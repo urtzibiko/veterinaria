@@ -1,0 +1,14 @@
+uuid: 8b87f512-0f98-4bab-a695-0a142ed85914
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Comentarios sobre el sitio web'
+recipients:
+  - info@veterinariaalaiz.com
+reply: ''
+weight: 0
+message: 'Su mensaje ha sido enviado.'
+redirect: ''

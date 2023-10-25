@@ -1,0 +1,11 @@
+uuid: d814cff4-281d-4d28-9b4a-018105c342ee
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.mascota
+id: node.mascota
+target_entity_type_id: node
+target_bundle: mascota
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,18 @@
+uuid: dd47b057-2674-49a3-b422-fe5500b6813b
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.mascota
+id: node.mascota.title
+field_name: title
+entity_type: node
+bundle: mascota
+label: 'Nombre de la mascota '
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

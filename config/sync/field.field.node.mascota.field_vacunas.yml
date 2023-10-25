@@ -1,0 +1,31 @@
+uuid: de511d2e-d51a-4c72-9e5d-8c0630858881
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_vacunas
+    - node.type.mascota
+    - paragraphs.paragraphs_type.registro_vacuna
+  module:
+    - entity_reference_revisions
+id: node.mascota.field_vacunas
+field_name: field_vacunas
+entity_type: node
+bundle: mascota
+label: Vacunas
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      registro_vacuna: registro_vacuna
+    negate: 0
+    target_bundles_drag_drop:
+      registro_vacuna:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

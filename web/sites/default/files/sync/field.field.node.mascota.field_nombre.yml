@@ -1,0 +1,19 @@
+uuid: 2dd04ae5-1e39-4113-a90e-430425ff01f7
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nombre
+    - node.type.mascota
+id: node.mascota.field_nombre
+field_name: field_nombre
+entity_type: node
+bundle: mascota
+label: 'Nombre mascota'
+description: 'Nombre de la mascota'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

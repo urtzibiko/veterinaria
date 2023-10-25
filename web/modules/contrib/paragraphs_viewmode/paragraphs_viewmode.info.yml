@@ -1,0 +1,12 @@
+name: Paragraphs View Modes
+type: module
+description: Allows you to select the paragraph view mode on a per paragraph basis.
+core_version_requirement: ^8.8 || ^9 || ^10
+package: Paragraphs
+dependencies:
+  - paragraphs:paragraphs
+
+# Information added by Drupal.org packaging script on 2023-02-09
+version: '8.x-1.1'
+project: 'paragraphs_viewmode'
+datestamp: 1675910666

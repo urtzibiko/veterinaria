@@ -1,0 +1,21 @@
+{
+  "name": "drupal/paragraph_view_mode",
+  "type": "drupal-module",
+  "description": "This tiny module is meant to easily reuse the same paragraph types with different view mode (display mode).",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "homepage": "https://www.drupal.org/project/paragraph_view_mode",
+  "authors": [
+    {
+      "name": "Mariusz Andrzejewski (sayco)",
+      "homepage": "https://www.drupal.org/u/sayco",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/paragraph_view_mode"
+  },
+  "require": {
+    "drupal/core": "^8.9 || ^9.0 || ^10"
+  }
+}

@@ -1,0 +1,10 @@
+uuid: 38977e98-0ebf-433a-b765-b93432c0d1c4
+langcode: es
+status: true
+dependencies: {  }
+id: loquesea
+label: loquesea
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

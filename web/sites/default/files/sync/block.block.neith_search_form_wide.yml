@@ -1,0 +1,23 @@
+uuid: da1efda7-b9cd-424f-aa98-12d57295d283
+langcode: es
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - neith
+_core:
+  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+id: neith_search_form_wide
+theme: neith
+region: secondary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Formulario de búsqueda (ancho)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

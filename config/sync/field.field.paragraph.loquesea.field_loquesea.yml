@@ -1,0 +1,19 @@
+uuid: e3891e98-43a7-4970-8a4b-096088540247
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_loquesea
+    - paragraphs.paragraphs_type.loquesea
+id: paragraph.loquesea.field_loquesea
+field_name: field_loquesea
+entity_type: paragraph
+bundle: loquesea
+label: loqueseatexto
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
