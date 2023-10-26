@@ -1,6 +1,7 @@
-.c-hero {
-  background-color: blue;
-  &__text {
-    color: orange;
-  }
-}
+@import '01_tools/index';
+@import '02_settings/index';
+@import '03_generic/index';
+@import '04_elements/index';
+@import '05_objects/index';
+@import '06_components/index';
+@import '07_utils/index';

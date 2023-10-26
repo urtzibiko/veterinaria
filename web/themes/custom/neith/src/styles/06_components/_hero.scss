@@ -1,6 +1,33 @@
 .c-hero {
-  background-color: blue;
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
   &__text {
     color: red;
+    background-color: #7cbe8c80 ;
+    position: absolute;
+    top: 10vw;
+    right: 10vw;
+    max-width: 30vw;
+    block-size: fit-content;
+    padding: 30px;
+  }
+  &__cta {
+    padding: 10px 50px;
+    border-radius: 20px ;
+    background-color: #7cbe8c;
+    color: yellow;
+    position: absolute;
+    bottom: 3vw;
+    left:auto;
+    width: fit-content;
+    block-size: fit-content;
+  }
+  a:link{
+  text-decoration: none;
+}
+  &__image {
+
   }
 }
