@@ -1,0 +1,7 @@
+style_selector.module_config_form:
+  path: '/admin/config/user-interface/style-selector'
+  defaults:
+    _form: '\Drupal\style_selector\Form\ModuleConfigForm'
+    _title: 'Style Selector'
+  requirements:
+    _permission: 'administer site configuration'

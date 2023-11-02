@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'style-selector';
+  src: url('../../media/fonts/style-selector.ttf?28q36q') format('truetype'),
+       url('../../media/fonts/style-selector.woff?28q36q') format('woff'),
+       url('../../media/fonts/style-selector.svg?28q36q#style-selector') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.ssui-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'style-selector' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ssui-icon--text:before {
+  content: "\e900";
+}
+.ssui-icon--empty:before {
+  content: "\e901";
+}

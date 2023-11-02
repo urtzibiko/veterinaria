@@ -5,18 +5,6 @@ starterkit: true
 version: VERSION
 libraries:
   - neith/base
-  - neith/messages
   - core/normalize
-libraries-extend:
-  user/drupal.user:
-    - neith/user
-  core/drupal.dropbutton:
-    - neith/dropbutton
-  core/drupal.dialog:
-    - neith/dialog
-  file/drupal.file:
-    - neith/file
-  core/drupal.progress:
-    - neith/progress
 core_version_requirement: ^10
 generator: 'starterkit_theme:10.1.5'

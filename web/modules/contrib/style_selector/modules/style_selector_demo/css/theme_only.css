@@ -1,0 +1,23 @@
+/*
+  These styles are only rendered in the user-facing theme. This is a good place
+  to add CSS that would otherwise interfere with the Style Selector UI styles.
+*/
+
+/*
+  Add some padding to the element wrapper that has a background style. This
+  assumes I've added 'has-background' as an extra class in either the module or
+  formatter settings.
+*/
+.has-background {
+  padding: 1rem;
+}
+
+/*
+  You might do something like this if you're setting a text color that pairs
+  well with your background style, and you want that to carry down to child
+  text elements. This example sets the text color for Olivero's .text-content
+  class.
+*/
+.bgstyle--dark .text-content {
+  color: #fff;
+}

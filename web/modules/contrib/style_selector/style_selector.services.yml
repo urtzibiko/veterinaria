@@ -1,0 +1,6 @@
+services:
+  style_selector.css_color:
+    class: Drupal\style_selector\Services\CssColor
+  style_selector.util:
+    class: Drupal\style_selector\Services\Utility
+    arguments: ['@config.factory', '@style_selector.css_color']

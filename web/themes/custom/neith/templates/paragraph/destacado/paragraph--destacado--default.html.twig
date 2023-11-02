@@ -1,0 +1,30 @@
+
+{%
+  set flippedClass = (content.field_estilo_de_visualizacion['#items'].getString() == 'flipped') ? "c-destacado--flipped" : ""
+%}
+
+<div {{ attributes.addClass('c-destacado', flippedClass) }}>
+  <div class="c-destacado__image">
+    <img src="https://placedog.net/1600/800?id=1" alt="Imagen del destacado" />
+  </div>
+  <div class="c-destacado__main">
+    <div class="c-destacado__main__titulo">
+      <h2>
+        {% if content.field_titulo_destacado['#items'] %}
+
+        {{ content.field_titulo_destacado }}
+
+        {% endif %}</h2>
+
+    </div>
+    <div class="c-destacado__main__text">
+      {% if content.field_text_destacado['#items'] %}
+
+        {{ content.field_text_destacado }}
+
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+

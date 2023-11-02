@@ -1,0 +1,21 @@
+style_selector_demo.settings:
+  type: config_object
+  mapping:
+    shared_libraries:
+      type: sequence
+      label: 'Shared libraries'
+      sequence:
+        type: string
+        label: 'Library entry'
+    theme_libraries:
+      type: sequence
+      label: 'Theme-only libraries'
+      sequence:
+        type: string
+        label: 'Library entry'
+    admin_libraries:
+      type: sequence
+      label: 'Admin-only libraries'
+      sequence:
+        type: string
+        label: 'Library entry'

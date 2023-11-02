@@ -1,0 +1,13 @@
+name: Style Selector
+type: module
+description: 'Provides a user-friendly form element, fields and field widgets for selecting CSS styles and colors.'
+package: Field types
+core_version_requirement: ^9 || ^10
+configure: style_selector.module_config_form
+dependencies:
+  - drupal:options
+
+# Information added by Drupal.org packaging script on 2023-07-26
+version: '2.0.0-alpha6'
+project: 'style_selector'
+datestamp: 1690402405

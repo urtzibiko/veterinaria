@@ -1,0 +1,4 @@
+services:
+  style_selector_demo.util:
+    class: Drupal\style_selector_demo\Utilities
+    arguments: ['@config.factory', '@config.typed']

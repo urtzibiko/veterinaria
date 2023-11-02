@@ -1,0 +1,14 @@
+name: Style Selector Demonstration
+description: Provides some some sample CSS libraries for demonstration.
+package: Style Selector
+
+type: module
+core_version_requirement: ^9 || ^10
+
+dependencies:
+  - style_selector:style_selector
+
+# Information added by Drupal.org packaging script on 2023-07-26
+version: '2.0.0-alpha6'
+project: 'style_selector'
+datestamp: 1690402405

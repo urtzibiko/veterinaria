@@ -1,0 +1,7 @@
+shared_libraries:
+  - style_selector_demo/shared_bg_styles
+  - style_selector_demo/shared_text_styles
+theme_libraries:
+  - style_selector_demo/theme_only
+admin_libraries:
+  - style_selector_demo/admin_only

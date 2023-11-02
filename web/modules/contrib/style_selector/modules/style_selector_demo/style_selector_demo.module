@@ -1,0 +1,386 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations for Style Selector Demonstration module.
+ *
+ * Adds demonstration fields to the Style Selector configuration form.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function style_selector_demo_form_style_selector_settings_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Add the Style Selector Demonstator.
+  $form['demo'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Demo Fields'),
+    '#description' => t('These fields were added by the Style Selector Demo module (style_selector_demo), and will be removed when the module is uninstalled.'),
+    '#description_display' => 'before',
+  ];
+
+  // Ensure required libraries are loaded before proceding.
+  if ($missing = \Drupal::service('style_selector_demo.util')->getMissingLibs()) {
+    $message = t('<p><strong>Notice</strong>: The following libraries are required by Style Selector Demo, but are missing from the current settings.</p>');
+    $message .= '<ul>';
+    foreach ($missing as $library) {
+      $message .= t('<li>@label: @libs</li>', [
+        '@label' => $library['label'],
+        '@libs' => trim(implode(', ', $library['libs']), ', '),
+      ]);
+    }
+    $message .= '</ul>';
+    $message .= t('<p>You may need to re-add them, or uninstall the Demo module if it is not longer needed.</p>');
+    $form['demo']['#description'] = $message;
+    return;
+  }
+
+  // The Background Styles fields.
+  $form['demo']['bg_fields'] = [
+    '#type' => 'details',
+    '#title' => 'Background Styles',
+    '#description' => t('The CSS for these examples is at <code>style_selector_demo/css/shared_bg_styles</code>.'),
+    '#description_display' => 'after',
+  ];
+
+  $bg_base = [
+    '#title' => t('Background Style'),
+    '#type' => 'style_selector',
+    '#style_type' => 'css_class',
+    '#options' => [
+      'bgstyle--light bgstyle--white' => t('White'),
+      'bgstyle--light bgstyle--white-blur' => t('White Glass (Blur) Overlay'),
+      'bgstyle--light bgstyle--lime' => t('Lime'),
+      'bgstyle--dark bgstyle--overlay' => t('Semi-transparent Black'),
+      'bgstyle--dark bgstyle--sunrise' => t('Sunrise'),
+      'bgstyle--dark bgstyle--squares' => t('Orange Squares Texture'),
+      'bgstyle--dark bgstyle--animated' => t('Animated gradient'),
+    ],
+    '#input' => FALSE,
+    '#description_display' => 'before',
+  ];
+
+  // Example with default settings only.
+  $form['demo']['bg_fields']['bg_round_set'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Default Style Selector Widget'),
+    '#description' => t('This demonstrates the default Style Selector element UI.'),
+    '#description_display' => 'before',
+  ];
+  $form['bg_round'] = $bg_base + [
+    '#group' => 'bg_round_set',
+  ];
+
+  // Tiles with text.
+  $description = <<<END
+    <p>
+      This display uses the <b>Tile</b> style/widget for a larger preview, and
+      the 'text icon' is enabled to demonstrate the foreground color set in the
+      background style class. The none/empty option is re-labeled and the
+      'empty icon' is disabled.
+    </p>
+    <p>
+      <b>SETTINGS</b><br/>
+      <b>UI Style</b>: Tile (Size: default) |
+      <b>Empty option label</b>: 'None/Default' |
+      <b>Empty icon:</b> Off |
+      <b>Text icon:</b> On |
+      <b>Check icon:</b> Off
+    </p>
+  END;
+  $form['demo']['bg_fields']['bg_tile_set'] = [
+    '#type' => 'fieldset',
+    '#title' => 'Tile widget with text color icon',
+    '#description' => t('@desc', ['@desc' => $description]),
+    '#description_display' => 'before',
+  ];
+
+  $form['bg_tile_large'] = $bg_base + [
+    '#ui_variant' => [
+      'tile' => [
+        'size' => 'default',
+      ],
+    ],
+    '#empty_option' => 'None/Default',
+    '#ui_settings' => [
+      'text_icon' => TRUE,
+      'empty_icon' => FALSE,
+    ],
+    '#group' => 'bg_tile_set',
+  ];
+
+  $form['bg_values'] = [
+    '#type' => 'textarea',
+    '#title' => t('Allowed Values'),
+    '#value' => style_selector_demo__styles_to_values($bg_base['#options']),
+    '#description' => t('Use these values to create a new CSS Style field that uses the styles demonstrated here.'),
+    '#description_display' => 'before',
+    '#group' => 'bg_fields',
+  ];
+
+  // The Card Layout fields.
+  $description = <<<END
+    <p>
+      Background images provide a card layout preview (e.g. for a view mode
+      selection field). The CSS for these examples is at
+      <code>style_selector_demo/css/admin_only.css</code>.
+    </p>
+    <p>
+      Both fields use the <b>Tile</b> widget&mdash;the first is size 'Default',
+      the second size 'Large'. The field is marked <b>required</b>, so no
+      'empty' option appears.
+    </p>
+  END;
+
+  $form['demo']['card_preview'] = [
+    '#type' => 'details',
+    '#title' => 'Background Images/Icons',
+    '#description' => t('@desc', ['@desc' => $description]),
+    '#description_display' => 'before',
+  ];
+
+  $card_base = [
+    '#type' => 'style_selector',
+    '#title' => 'Choose a card layout',
+    '#options' => [
+      'card-image-left' => 'Image left',
+      'card-image-top' => 'Image top',
+      'card-image-right' => 'Image right',
+    ],
+    '#required' => TRUE,
+    '#default_value' => 'card-image-left',
+    '#group' => 'card_preview',
+  ];
+
+  $form['cards'] = $card_base + [
+    '#ui_variant' => [
+      'tile' => [
+        'size' => 'default',
+      ],
+    ],
+  ];
+
+  $form['cards_large'] = [
+    '#ui_variant' => [
+      'tile' => [
+        'size' => 'large',
+      ],
+    ],
+    '#default_value' => 'card-image-right',
+  ] + $card_base;
+
+  $form['card_values'] = [
+    '#type' => 'textarea',
+    '#title' => t('Allowed Values'),
+    '#value' => style_selector_demo__styles_to_values($form['cards']['#options']),
+    '#description' => t('Use these values to create a new CSS Style field that uses the styles demonstrated here.'),
+    '#description_display' => 'before',
+    '#group' => 'card_preview',
+  ];
+
+  // Text Styles demo.
+  $text_base = [
+    '#type' => 'style_selector',
+    '#style_type' => 'css_class',
+    '#options' => [
+      'text-red-500' => t('Red'),
+      'text-orange-500' => t('Orange'),
+      'text-amber-500' => t('Amber'),
+      'text-yellow-500' => t('Yellow'),
+      'text-lime-500' => t('Lime'),
+      'text-green-500' => t('Green'),
+      'text-emerald-500' => t('Emerald'),
+      'text-teal-500' => t('Teal'),
+      'text-cyan-500' => t('Cyan'),
+      'text-sky-500' => t('Sky'),
+      'text-indigo-500' => t('Indigo'),
+      'text-violet-500' => t('Violet'),
+      'text-purple-500' => t('Purple'),
+      'text-fuchsia-500' => t('Fuchsia'),
+      'text-pink-500' => t('Pink'),
+    ],
+    '#input' => FALSE,
+    '#group' => 'text_fields',
+    '#description_display' => 'before',
+  ];
+
+  $description = <<<END
+    <p>
+      An example of how a Style Selector field could be configured to collect a
+      user-selected text/foreground color. This uses a sub-set of
+      <a href='https://tailwindcss.com/docs/text-color' target='_blank'>Text
+      color styles from Tailwind CSS</a>, but any styles that target the
+      <code>color</code> property will work. The default 'alpha grid' background
+      is disabled to provide a solid background, and the 'check icon' is off to
+      avoid obscuring the <b>T</b> text icons. The CSS for this example is at
+      <code>style_selector_demo/css/shared_text_styles</code>.
+    </p>
+    <p>
+      <b>SETTINGS</b><br/>
+      <b>UI Style</b>: Compact (Square, Large) |
+      <b>Empty option</b>: 'Default' |
+      <b>Alpha grid:</b> Off | <b>Text icon:</b> On |
+      <b>Check icon:</b> Off
+    </p>
+  END;
+  $form['demo']['text_fields'] = [
+    '#type' => 'details',
+    '#title' => 'Text Color Styles',
+    '#description' => t('@desc', ['@desc' => $description]),
+  ];
+
+  $form['text_square_large'] = $text_base + [
+    '#title' => t('Text Color'),
+    '#ui_variant' => [
+      'compact' => [
+        'type' => 'square',
+        'size' => 'large',
+      ],
+    ],
+    '#ui_settings' => [
+      'alpha_grid' => FALSE,
+      'check_icon' => FALSE,
+      'text_icon' => TRUE,
+    ],
+    '#empty_option' => 'Default',
+  ];
+
+  $form['text_values'] = [
+    '#type' => 'textarea',
+    '#title' => t('Allowed Values'),
+    '#value' => style_selector_demo__styles_to_values($text_base['#options']),
+    '#description' => t('Use these values to create a new CSS Style field that uses the styles demonstrated here.'),
+    '#description_display' => 'before',
+    '#group' => 'text_fields',
+  ];
+
+  // Add color fields.
+  $color_base = [
+    '#type' => 'style_selector',
+    '#style_type' => 'css_color',
+    '#options' => [
+      'currentColor' => t('Current Text Color'),
+      '#ffffff' => t('White'),
+      '#222' => t('Black'),
+      'hsl(323, 91%, 58%)' => t('Pink'),
+      'green' => t('Green'),
+      '#003767' => t('Navy'),
+      'rgba(0,0,0,.75)' => t('Black 75%'),
+    ],
+    '#input' => FALSE,
+    '#description_display' => 'before',
+  ];
+
+  $form['demo']['color_fields'] = [
+    '#type' => 'details',
+    '#title' => 'CSS Color Fields',
+  ];
+
+  $description = <<<END
+    <p>
+      By default, Style Selector widgets apply selected colors to the
+      <code>background-color</code> property of the form element as
+      demonstrated below. (The target property can be set independently in a
+      Style Selector formatter when the field value is rendered.)
+    </p>
+    <p>
+      <b>SETTINGS</b><br/>
+      <b>UI Style</b>: Compact (Round, Large)
+    </p>
+  END;
+
+  $form['demo']['color_fields']['color_default'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Default Style Selector Widget'),
+    '#description' => t('@desc', ['@desc' => $description]),
+    '#description_display' => 'before',
+  ];
+  $form['color_round_large'] = $color_base + [
+    '#title' => t('Choose a color'),
+    '#ui_variant' => [
+      'compact' => [
+        'type' => 'round',
+        'size' => 'large',
+      ],
+    ],
+    '#group' => 'color_default',
+  ];
+
+  $description = <<<END
+    <p>
+      In this example, the color property target is set to <code>color</code> to
+      apply the color the text icon. This display also adds an
+      <em>extra class</em> ('text-color') to ease customization in the
+      admin_only CSS. Here also, the background color is changed to improve
+      contrast for all options, and a text-shadow 'stroke' to the white option
+      only to improve icon visibility.
+      (see <code>style_selector_demo/css/admin_only.css</code>.)";
+    </p>
+    <p>
+      <b>SETTINGS</b><br/>
+      <b>UI Style</b>: Compact (Square, Large) |
+      <b>Color prop:</b> Color |
+      <b>Extra class:</b> 'text-color' |
+      <b>Alpha grid:</b> Off |
+      <b>Text icon:</b> On |
+      <b>Check icon:</b> Off
+    </p>
+  END;
+
+  $form['demo']['color_fields']['color_large'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Color field with text icon'),
+    '#description' => t('@desc', ['@desc' => $description]),
+    '#description_display' => 'before',
+  ];
+  $form['color_square_large'] = $color_base + [
+    '#title' => t('Choose a text color'),
+    '#ui_variant' => [
+      'compact' => [
+        'type' => 'square',
+        'size' => 'large',
+      ],
+    ],
+    '#ui_settings' => [
+      'text_icon' => TRUE,
+      'alpha_grid' => FALSE,
+      'check_icon' => FALSE,
+    ],
+    '#color_prop' => 'color',
+    '#extra_classes' => 'text-color',
+    '#group' => 'color_large',
+  ];
+
+  $form['color_values'] = [
+    '#type' => 'textarea',
+    '#title' => t('Allowed Values'),
+    '#value' => style_selector_demo__styles_to_values($color_base['#options']),
+    '#description' => t('Use these values to create a new CSS Color field that uses the colors demonstrated here.'),
+    '#group' => 'color_fields',
+  ];
+
+}
+
+/**
+ * Helper to transform a Style Selector #options property to value label array.
+ *
+ * @param array $styles
+ *   Style Selector #options property.
+ *
+ * @return array
+ *   Array of key/label pairs suitable for use as 'Allowed Values' for a field.
+ */
+function style_selector_demo__styles_to_values(array $styles) {
+  $values = '';
+
+  foreach ($styles as $value => $label) {
+    $values .= t("@value|@label\n", [
+      '@value' => $value,
+      '@label' => $label,
+    ]);
+  }
+  return trim($values);
+}

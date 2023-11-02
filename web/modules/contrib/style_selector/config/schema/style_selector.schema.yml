@@ -1,0 +1,151 @@
+style_selector.settings:
+  type: config_object
+  mapping:
+    shared_libraries:
+      type: sequence
+      label: 'Shared libraries'
+      sequence:
+        type: string
+        label: 'Library entry'
+    theme_libraries:
+      type: sequence
+      label: 'Theme-only libraries'
+      sequence:
+        type: string
+        label: 'Library entry'
+    admin_libraries:
+      type: sequence
+      label: 'Admin-only libraries'
+      sequence:
+        type: string
+        label: 'Library entry'
+    extra_css_classes:
+      type: sequence
+      label: 'Extra CSS classes'
+      sequence:
+        type: string
+        label: 'CSS classname'
+    extra_color_classes:
+      type: sequence
+      label: 'Extra color classes'
+      sequence:
+        type: string
+        label: 'CSS classname'
+
+field.storage_settings.style_selector_css_class:
+  type: mapping
+  label: 'List (text) settings'
+  mapping:
+    allowed_values:
+      type: sequence
+      label: 'Allowed values list'
+      sequence:
+        type: mapping
+        label: 'Allowed value with label'
+        mapping:
+          value:
+            type: string
+            label: 'Value'
+          label:
+            type: label
+            label: 'Label'
+    allowed_values_function:
+      type: string
+      label: 'Allowed values function'
+
+field.storage_settings.style_selector_css_color:
+  type: mapping
+  label: 'List (text) settings'
+  mapping:
+    allowed_values:
+      type: sequence
+      label: 'Allowed values list'
+      sequence:
+        type: mapping
+        label: 'Allowed value with label'
+        mapping:
+          value:
+            type: string
+            label: 'Value'
+          label:
+            type: label
+            label: 'Label'
+    allowed_values_function:
+      type: string
+      label: 'Allowed values function'
+
+# Shared advanced settings for widgets.
+advanced_settings:
+  type: mapping
+  label: 'Advanced widget settings'
+  mapping:
+    color_prop:
+      type: string
+      label: 'Color property target'
+      nullable: true
+    extra_classes:
+      type: string
+      label: 'Extra CSS classes'
+    empty_option:
+      type: string
+      label: 'Empty option label'
+    ui_settings:
+      type: mapping
+      label: 'Widget UI options'
+      mapping:
+        alpha_grid:
+          type: boolean
+          label: 'Show alpha channel grid background'
+        check_icon:
+          type: boolean
+          label: 'Show selected icon'
+        empty_icon:
+          type: boolean
+          label: 'Show empty option icon'
+        text_icon:
+          type: boolean
+          label: 'Show text color icon'
+
+field.widget.settings.style_selector_tile_widget:
+  type: mapping
+  label: 'Style Selector Tile widget settings'
+  mapping:
+    size:
+      type: string
+      label: 'Size'
+    advanced:
+      type: advanced_settings
+      label: 'Advanced tile widget settings'
+
+field.widget.settings.style_selector_compact_widget:
+  type: mapping
+  label: 'Style Selector Compact widget settings'
+  mapping:
+    'type':
+      type: string
+      label: 'Type'
+    size:
+      type: string
+      label: 'Size'
+    advanced:
+      type: advanced_settings
+      label: 'Advanced compact widget settings'
+
+field.formatter.settings.style_selector_css_class_formatter:
+  type: mapping
+  label: 'Style Selector CSS Style formatter settings'
+  mapping:
+    extra_classes:
+      type: string
+      label: 'Extra CSS classes'
+
+field.formatter.settings.style_selector_css_color_formatter:
+  type: mapping
+  label: 'Style Selector CSS Color formatter settings'
+  mapping:
+    extra_classes:
+      type: string
+      label: 'Extra CSS classes'
+    css_property:
+      type: string
+      label: 'Target CSS property'

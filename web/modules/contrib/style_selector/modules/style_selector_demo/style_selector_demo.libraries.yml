@@ -1,0 +1,23 @@
+shared_bg_styles:
+  version: VERSION
+  css:
+    theme:
+      css/shared_bg_styles.css: {}
+
+shared_text_styles:
+  version: VERSION
+  css:
+    theme:
+      css/shared_text_styles.css: {}
+
+theme_only:
+  version: VERSION
+  css:
+    theme:
+      css/theme_only.css: {}
+
+admin_only:
+  version: VERSION
+  css:
+    theme:
+      css/admin_only.css: {}

@@ -1,0 +1,74 @@
+/*
+  These styles will be attached to the render array BOTH when a Style Selector
+  CSS Class field is displayed in the admin interface, AND when a CSS Class
+  field is rendered using the CSS Class formatter (ie. in the user-facing
+  theme).
+
+  Ideally, these styles only deal with background (and perhaps color)
+  properties to prevent conflicts with Style Selector's UI styles. Supporting
+  styles that affect, for example, margin, padding, border, etc. can
+  be set in a separate 'theme-only' library that Style Selector can attach as
+  needed (see theme_only.css), or you could simply include that styling in your
+  theme's global CSS.
+
+  Sample 'Allowed values' for a Style list field:
+    bgstyle--light bgstyle--light bgstyle--white|White
+    bgstyle--light bgstyle--white-blur|White Glass
+    bgstyle--light bgstyle--lime|Lime
+    bgstyle--dark bgstyle--black-50|Semi-transparent black
+    bgstyle--dark bgstyle--sunrise|Sunrise
+    bgstyle--dark bgstyle--squares|Orange squares
+    bgstyle--dark bgstyle--animated|Animated gradient
+*/
+
+/*
+  Set a text/foreground color for the light and dark backgrounds.
+*/
+.bgstyle--dark {
+  color: #fff;
+}
+.bgstyle--light {
+  color: #333;
+}
+.bgstyle--red {
+  background-color: red;
+}
+.bgstyle--white {
+  background-color: white;
+}
+.bgstyle--white-blur {
+  background-color: rgba(255,255,255,0.5);
+  backdrop-filter: blur(2px);
+}
+.bgstyle--lime {
+  background-color: rgb(132 204 22);
+}
+.bgstyle--overlay {
+  background-color: rgba(0,0,0,0.5);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.95);
+}
+.bgstyle--sunrise {
+  background: linear-gradient(45deg, rgba(252,176,69,1) 0%, rgba(253,29,29,1) 50%, rgba(131,58,180,1) 100%);
+}
+/* From https://svgbackgrounds.com. */
+.bgstyle--squares {
+  background-color: #ee5522;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23d23d09' fill-opacity='0.6'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
+}
+.bgstyle--animated {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

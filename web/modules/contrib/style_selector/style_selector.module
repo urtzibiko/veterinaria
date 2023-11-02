@@ -1,0 +1,243 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations and helper functions for Style Selector.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_css_alter().
+ *
+ * Replace core's off-canvas reset with our own that adds .ssui__option to the
+ * list of element exempted from reset.
+ *
+ * This only affects Drupal 10+ since the 8/9 reset has a different key.
+ */
+function style_selector_css_alter(&$css, AttachedAssetsInterface $assets) {
+  if (isset($css['core/misc/dialog/off-canvas/css/reset.css'])) {
+    $css['core/misc/dialog/off-canvas/css/reset.css']['data'] = 'modules/contrib/style_selector/dist/css/base/drupal-off-canvas-reset.css';
+  }
+}
+
+/**
+ * Implements hook_preprocess_radios().
+ */
+function style_selector_preprocess_radios(&$variables) {
+  _style_selector_preprocess_booleans($variables);
+}
+
+/**
+ * Implements hook_preprocess_checkboxes().
+ */
+function style_selector_preprocess_checkboxes(&$variables) {
+  _style_selector_preprocess_booleans($variables);
+}
+
+/**
+ * Proprocess boolean group elements (radios, checkboxes).
+ */
+function _style_selector_preprocess_booleans(&$variables) {
+  $element = $variables['element'];
+
+  if (isset($element['#style_selector'])) {
+    $variables['attributes']['class'] ??= [];
+    $variables['attributes']['class'][] = 'ssui__item-group';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add a template suggestion for Style Selector booleans (radio/checkbox) only.
+ */
+function style_selector_theme_suggestions_input_alter(array &$suggestions, array $variables) {
+  if (isset($variables['element']['#style_selector'])) {
+    if ($variables['theme_hook_original'] == 'input__radio') {
+      $suggestions[] = 'input__radio__style_selector';
+    }
+    if ($variables['theme_hook_original'] == 'input__checkbox') {
+      $suggestions[] = 'input__checkbox__style_selector';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Let Drupal know about our custom templates. Since the suggestion above is
+ * only added for Style Selector booleans, this won't override standard boolean
+ * templates.
+ */
+function style_selector_theme($existing, $type, $theme, $path) {
+  return [
+    'input__style_selector' => [
+      'template' => 'input--style-selector',
+    ],
+    'input__radio__style_selector' => [
+      'template' => 'input--radio--style-selector',
+      'base hook' => 'input__radio',
+    ],
+    'input__checkbox__style_selector' => [
+      'template' => 'input--checkbox--style-selector',
+      'base hook' => 'input__checkbox',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ *
+ * Add a custom attributes to style_selector form_element wrappers.
+ */
+function style_selector_preprocess_form_element(&$variables) {
+  $element = $variables['element'];
+  if (isset($element['#style_selector'])) {
+    $variables['attributes']['class'] ??= [];
+    $variables['attributes']['class'][] = 'ssui__item';
+    $variables['label']['#attributes']['class'][] = 'ssui__option-label';
+
+    $variables['attributes']['data-ssui-value'] = $element['#style_value'];
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ *
+ * Gin prevenst hook_preprocess_input__checkbox() from running (??), so custom
+ * properties are now processed here. Claro/gin class removal is now done in
+ * the input template.
+ *
+ * @see input--style-selector.html.twig
+ */
+function style_selector_preprocess(&$variables, $hook) {
+  // Only process style_selector elements.
+  if (!isset($variables['element']['#style_selector'])) {
+    return;
+  }
+
+  // $hook is correctly set for input__checkbox, but is set to 'input' for
+  // radios? Check 'theme_hook_original' instead.
+  $hook_original = $variables['theme_hook_original'] ?? '';
+  if (!$hook_original == 'input__radio' || !$hook_original == 'input__checkbox') {
+    return;
+  }
+
+  // Add custom styles for the Style Selector option element.
+  $option_attributes = new Attribute([
+    'class' => ['ssui__option'],
+  ]);
+
+  if (!empty($variables['element']['#option_style']['class'])) {
+    $option_attributes->addClass($variables['element']['#option_style']['class']);
+  }
+  if (!empty($variables['element']['#option_style']['style'])) {
+    $option_attributes->setAttribute('style', $variables['element']['#option_style']['style']);
+  }
+  $variables['option_attributes'] = $option_attributes;
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ *
+ * Allow Style Selector fields to use existing list formatters.
+ */
+function style_selector_field_formatter_info_alter(array &$info) {
+  // Add core list formatters.
+  $formatters = [
+    'list_key',
+    'list_default',
+  ];
+
+  foreach ($formatters as $formatter) {
+    if (isset($info[$formatter])) {
+      $info[$formatter]['field_types'][] = 'style_selector_css_class';
+      $info[$formatter]['field_types'][] = 'style_selector_css_color';
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function style_selector_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+
+  // Skip non-fieldable entities.
+  if (!($entity instanceof FieldableEntityInterface)) {
+    return;
+  }
+
+  // Discover and process Style Selector fields.
+  $ss_utility = \Drupal::service('style_selector.util');
+  $fields = $ss_utility->getStyleSelectorFields($display, $entity);
+  if ($fields) {
+    foreach ($fields as $name => $field) {
+      if (!$entity->hasField($name)) {
+        continue;
+      }
+
+      $values = $ss_utility->getFieldValues($entity->get($name)->getValue());
+
+      if ($values) {
+        $build['#attributes']['class'] ??= [];
+
+        // Add extra classes defined in the module settings.
+        $classes = $field['classes'] ?? [];
+
+        // Add extra classes defined in the formatter.
+        $formatter_classes = $ss_utility->getClasses($field['settings']['extra_classes'] ?? '');
+        $classes = array_merge($classes, $formatter_classes);
+
+        // Add classes to the build array.
+        if ($classes) {
+          $build['#attributes']['class'] = array_unique(array_merge($build['#attributes']['class'], $classes));
+        }
+
+        // If this is a CSS Class field, add the class(es) stored in the field.
+        if ($field['type'] === 'class') {
+          foreach ($values as $value) {
+            $build['#attributes']['class'] = array_merge($build['#attributes']['class'], $ss_utility->getClasses($value));
+          }
+        }
+
+        // If this is a Color field, build and add the color style attribute.
+        if ($field['type'] === 'color') {
+          if ($property = $field['settings']['css_property'] ?? '') {
+            $build['#attributes']['style'] ??= [];
+            // Use only the first value even if field allows multiple.
+            $build['#attributes']['style'][] = "{$property}:" . reset($values) . " !important;";
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function style_selector_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.style_selector':
+      $text = file_get_contents(__DIR__ . '/README.md');
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . Html::escape($text) . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return '';
+}

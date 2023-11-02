@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{#
+  For some reason, Gin is preventing hook_preprocess_input__checkbox from
+  running, so moving the removal of claro/gin boolean classes here.
+#}
+{%
+  set classes_to_remove = [
+    'form-boolean',
+    'form-boolean--type-radio',
+    'form-boolean--type-checkbox'
+  ]
+%}
+<div class="ssui__option-wrapper">
+  <div{{ option_attributes }}>
+    <input{{ attributes.removeClass(classes_to_remove) }} />{{ children }}
+  </div>
+</div>
+
+

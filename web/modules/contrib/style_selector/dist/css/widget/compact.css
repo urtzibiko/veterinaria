@@ -1,0 +1,99 @@
+/* UI Style 'compact'. */
+.gin--dark-mode .ssui-style--compact {
+  --ssuiLabelBackground: var(--ssuiColorGreyDark);
+}
+
+.ssui-style--compact,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact,
+#drupal-off-canvas-wrapper .ssui-style--compact {
+  --ssuiLabelBackground: var(--ssuiColorBlack);
+  --ssuiLabelText: var(--ssuiColorGreyLight);
+}
+
+.ssui-style--compact .ssui__option-wrapper,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact .ssui__option-wrapper,
+#drupal-off-canvas-wrapper .ssui-style--compact .ssui__option-wrapper {
+  width: var(--ssuiSizeDefault);
+}
+
+/* Size large */
+.ssui-style--compact-size-large .ssui__option-wrapper,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact-size-large .ssui__option-wrapper,
+#drupal-off-canvas-wrapper .ssui-style--compact-size-large .ssui__option-wrapper {
+  width: var(--ssuiSizeLarge);
+}
+
+/* Type round. */
+.ssui-style--compact-type-round .ssui__option-wrapper,
+.ssui-style--compact-type-round .ssui__option,
+.ssui-style--compact-type-round .ssui__input,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact-type-round .ssui__input,
+#drupal-off-canvas-wrapper .ssui-style--compact-type-round .ssui__input,
+.ssui-style--compact-type-round .ssui__input::after {
+  border-radius: 50% !important;
+}
+
+/* Type square. */
+.ssui-style--compact-type-square .ssui__option-wrapper,
+.ssui-style--compact-type-square .ssui__option,
+.ssui-style--compact-type-square .ssui__input,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact-type-square .ssui__input,
+#drupal-off-canvas-wrapper .ssui-style--compact-type-square .ssui__input,
+.ssui-style--compact-type-square .ssui__input::after {
+  border-radius: var(--ssuiBorderRadius);
+}
+
+/*
+  Labels.
+  Compact labels only display on hover. The 'label' element selector included
+  below because, Gin.
+*/
+.ssui-style--compact label.ssui__option-label,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact label.ssui__option-label,
+#drupal-off-canvas-wrapper .ssui-style--compact label.ssui__option-label {
+  background-color: var(--ssuiLabelBackground);
+  border-radius: 4px;
+  display: none;
+  color: var(--ssuiLabelText) !important;
+  font-size: 0.75rem !important;
+  left: 50%;
+  margin: 0;
+  opacity: 0;
+  padding: 0.5rem !important;
+  position: absolute;
+  text-align: center;
+  top: 125%;
+  transform: translateX(-50%);
+  transition: all var(--ssuiTransition);
+  transition-property: opacity, top;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Show labels on hover. */
+.ssui-style--compact .ssui__item:hover .ssui__option-label,
+.ssui-style--compact .ssui__item:focus-within .ssui__option-label,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact .ssui__item:hover .ssui__option-label,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact .ssui__item:focus-within .ssui__option-label,
+#drupal-off-canvas-wrapper .ssui-style--compact .ssui__item:hover .ssui__option-label,
+#drupal-off-canvas-wrapper .ssui-style--compact .ssui__item:focus-within .ssui__option-label {
+  display: block;
+  opacity: 1;
+  top: 115%;
+}
+
+/* Carret for the label. */
+.ssui-style--compact .ssui__option-label::before,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--compact .ssui__option-label::before,
+#drupal-off-canvas-wrapper .ssui-style--compact .ssui__option-label::before {
+  border-color: transparent transparent var(--ssuiLabelBackground) transparent;
+  border-style: solid;
+  border-width: 0 5px 7px 5px;
+  content: '';
+  height: 0;
+  left: 50%;
+  position: absolute;
+  top: -7px;
+  transform: translateX(-50%);
+  width: 0;
+}

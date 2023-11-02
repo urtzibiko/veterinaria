@@ -1,0 +1,255 @@
+/* The radios wrapper.*/
+.ssui__item-group,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) div.ssui__item-group,
+#drupal-off-canvas-wrapper div.ssui__item-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ssuiItemSpacing);
+  margin: 0.5rem 0 0;
+}
+
+/* Conditionally turn off 'transparency' background and 'checked' icon. */
+.ssui.ssui--alpha-grid-off {
+  --ssuiImgAlphaGrid: none;
+}
+.ssui.ssui--check-icon-off {
+  --ssuiImgSelected: none;
+}
+
+/* The wrapper for each radio input and label. */
+.ssui .ssui__item,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__item,
+#drupal-off-canvas-wrapper .ssui .ssui__item {
+  justify-content: initial; /* Gin */
+  margin: 0 !important;
+  position: relative;
+  transition: all var(--ssuiTransition);
+}
+
+/* The radio element. */
+.ssui .ssui__input,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input,
+#drupal-off-canvas-wrapper .ssui .ssui__input {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid var(--ssuiBorder);
+  cursor: pointer;
+  display: block;
+  height: 100% !important;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  top: initial;
+  transition: all var(--ssuiTransition);
+  width: 100% !important;
+}
+.ssui .ssui__input:checked {
+  background-image: none;
+  background-color: transparent;
+}
+
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input,
+#drupal-off-canvas-wrapper .ssui .ssui__input {
+  border-color: #333;
+}
+
+/* The 'checked' indicator. */
+.ssui__input::after,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input::after,
+#drupal-off-canvas-wrapper .ssui__input::after {
+  background-color: transparent;
+  background-image: var(--ssuiImgSelected);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  content: '';
+  cursor: pointer;
+  display: block;
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity var(--ssuiTransition);
+}
+
+.ssui .ssui__input:checked::after,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input:checked::after,
+#drupal-off-canvas-wrapper .ssui .ssui__input:checked::after {
+  opacity: 1;
+}
+
+.ssui .ssui__input:not(:focus, :active):hover,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input:not(:focus, :active):hover,
+#drupal-off-canvas-wrapper .ssui .ssui__input:not(:focus, :active):hover {
+  border-color: var(--ssuiBorderHover);
+  box-shadow: inset 0 0 0 1px var(--ssuiBorderHover);
+}
+
+.ssui .ssui__input:checked,
+.ssui .ssui__input:checked:hover,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input:checked,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input:checked:hover,
+#drupal-off-canvas-wrapper .ssui .ssui__input:checked,
+#drupal-off-canvas-wrapper .ssui .ssui__input:checked:hover {
+  border-color: var(--ssuiBorderChecked);
+}
+
+.ssui .ssui__input.error,
+.ssui .ssui__input.error:checked,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input.error,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui .ssui__input.error:checked,
+#drupal-off-canvas-wrapper .ssui .ssui__input.error,
+#drupal-off-canvas-wrapper .ssui .ssui__input.error:checked {
+  border-color: var(--ssuiErrorColor);
+}
+
+/* Add checkered background to provide context to semi-transparent values. */
+.ssui__option-wrapper,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__option-wrapper,
+#drupal-off-canvas-wrapper .ssui__option-wrapper {
+  aspect-ratio: var(--ssuiAspectRatio);
+  background-color: var(--ssuiOptionBgColor);
+  background-image: var(--ssuiImgAlphaGrid);
+  width: var(--ssuiSizeDefault);
+}
+
+/* This is where the user-selected style or color is added. */
+.ssui__option,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__option,
+#drupal-off-canvas-wrapper .ssui__option {
+  box-shadow: inset 0 0 0 3px var(--ssuiOffsetHaloColor) !important;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/* Icons. */
+:is(.ssui--empty-icon-on, .ssui--text-icon-on) .ssui__option::before,
+:is(.ssui--empty-icon-on, .ssui--text-icon-on) #drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__option::before,
+:is(.ssui--empty-icon-on, .ssui--text-icon-on) #drupal-off-canvas-wrapper .ssui__option::before {
+  font-family: 'style-selector' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Empty icon. */
+.ssui--empty-icon-on [data-ssui-value='none'] .ssui__option::before,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui--empty-icon-on [data-ssui-value='none'] .ssui__option::before,
+#drupal-off-canvas-wrapper .ssui--empty-icon-on [data-ssui-value='none'] .ssui__option::before {
+  content: "\e901";
+  color: var(--ssuiEmptyIconColor);
+}
+
+/* Text icon. */
+.ssui--text-icon-on .ssui__item:not([data-ssui-value='none']) .ssui__option::before,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui--text-icon-on .ssui__item:not([data-ssui-value='none']) .ssui__option::before,
+#drupal-off-canvas-wrapper .ssui--text-icon-on .ssui__item:not([data-ssui-value='none']) .ssui__option::before {
+  content: "\e900";
+}
+
+/* The inset box shadow doesn't quite work in off-canvas. Not sure why yet. */
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__option,
+#drupal-off-canvas-wrapper .ssui__option {
+  box-shadow: none;
+}
+
+/* Add Claro styles for other themes (except Gin) and #drupal-off-canvas:not(.drupal-off-canvas-reset). */
+.ssui:not(.ssui--gin) .ssui__input.error,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input.error,
+#drupal-off-canvas-wrapper .ssui__input.error {
+  border-color: var(--ssuiErrorColor);
+  box-shadow: inset 0 0 0 1px var(--ssuiErrorColor);
+}
+
+.ssui:not(.ssui--gin) .ssui__input:active,
+.ssui:not(.ssui--gin) .ssui__input:hover,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:active,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:hover,
+#drupal-off-canvas-wrapper .ssui__input:active,
+#drupal-off-canvas-wrapper .ssui__input:hover {
+  border-color: var(--ssuiColorBlack);
+  box-shadow: inset 0 0 0 1px var(--ssuiColorBlack);
+}
+
+.ssui:not(.ssui--gin) .ssui__input:focus:active,
+.ssui:not(.ssui--gin) .ssui__input:focus:hover,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:focus:active,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:focus:hover,
+#drupal-off-canvas-wrapper .ssui__input:focus:active,
+#drupal-off-canvas-wrapper .ssui__input:focus:hover {
+  box-shadow: 0 0 0 2px var(--ssuiOffsetHaloColor),
+              0 0 0 5px var(--ssuiColorGreen),
+              inset 0 0 0 1px var(--ssuiColorBlack);
+}
+
+.ssui:not(.ssui--gin) .ssui__input:checked,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:checked,
+#drupal-off-canvas-wrapper .ssui__input:checked {
+  border-color: var(--ssuiBorderChecked);
+  box-shadow: inset 0 0 0 1px var(--ssuiBorderChecked);
+}
+
+.ssui:not(.ssui--gin) .ssui__input:checked:focus,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:checked:focus,
+#drupal-off-canvas-wrapper .ssui__input:checked:focus {
+  box-shadow: 0 0 0 2px var(--ssuiOffsetHaloColor),
+              0 0 0 5px var(--ssuiColorGreen),
+              inset 0 0 0 1px var(--ssuiBorderChecked);
+}
+
+.ssui:not(.ssui--gin) .ssui__input:checked:active,
+.ssui:not(.ssui--gin) .ssui__input:checked:hover,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:checked:active,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui__input:checked:hover,
+#drupal-off-canvas-wrapper .ssui__input:checked:active,
+#drupal-off-canvas-wrapper .ssui__input:checked:hover {
+  border-color: var(--ssuiBorderHover);
+  box-shadow: 0 0 0 2px var(--ssuiOffsetHaloColor),
+              0 0 0 5px var(--ssuiColorGreen),
+              inset 0 0 0 1px var(--ssuiBorderHover);
+}
+
+/* Add back Gin's ':checked' styling. */
+.ssui--gin .ssui__input:checked {
+  border-color: var(--colorGinPrimary);
+  box-shadow: inset 0 0 0 2px var(--ssuiOffsetHaloColor),
+              0 0 0 1px var(--colorGinPrimary);
+}
+
+.ssui--gin .ssui__input:checked:active,
+.ssui--gin .ssui__input:checked:focus,
+.ssui--gin .ssui__input:checked:hover:focus {
+  box-shadow: inset 0 0 0 1px var(--ssuiOffsetHaloColor),
+              0 0 0 1px var(--colorGinPrimary),
+              0 0 0 4px var(--colorGinFocus);
+}
+
+/* Error states. */
+.ssui__item input.error {
+  background-color: transparent !important; /* Adminimal fix. */
+}
+
+/* Off-canvas */
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .fieldset__wrapper,
+#drupal-off-canvas-wrapper .fieldset__wrapper {
+  border: none;
+  padding: 0.25rem;
+}
+
+/* Adminimal overrides. */
+.ssui--adminimal_theme input[type='radio'],
+.ssui--adminimal_theme input[type='radio']:checked,
+.ssui--adminimal_theme input[type='radio'].error:checked,
+.ssui--adminimal_theme input[type='radio'].error:focus:checked {
+  background-color: transparent !important;
+}

@@ -1,0 +1,21 @@
+/**
+ * These styles derived from core/misc/dialog/off-canvas/css/reset.css so we
+ * opt-out the full reset for elements with the .ssui__option class.
+ *
+ * The original core reset has been 'disabled' using hook_library_info_alter()
+ * in style_selector.module.
+ */
+
+#drupal-off-canvas-wrapper *:where(:not(svg, svg *, .ck-reset *, [data-drupal-ck-style-fence] *, .ui-resizable-handle, .ssui__option)) {
+  all: revert;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
+}
+
+#drupal-off-canvas-wrapper *:where(:not(svg, svg *, .ck-reset *, [data-drupal-ck-style-fence] *, .ui-resizable-handle, .ssui__option))::after,
+#drupal-off-canvas-wrapper *:where(:not(svg, svg *, .ck-reset *, [data-drupal-ck-style-fence] *, .ui-resizable-handle, .ssui__option))::before {
+  all: revert;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}

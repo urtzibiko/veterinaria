@@ -1,0 +1,35 @@
+/*
+  These styles will only be loaded when the Style Selector form element is
+  rendered. That's often in the admin theme, but not guaranteed. Also, due to
+  the aggressive CSS reset used by Drupal's 'settings tray', you generally
+  need to account for #drupal-off-canvas in any styles that need to affect form
+  elements rendered in the settings tray. See examples below.
+*/
+
+/*
+  Use the extra class we added to set a background color that provides better
+  contrast with the text icons.
+*/
+.ssui--text-color .ssui__option {
+  background-color: #eee !important;
+}
+
+/*
+  Add a text shadow to further increase the contrast on the white option only.
+*/
+.ssui--text-color [data-ssui-value="rgb(255, 255, 255)"] .ssui__option {
+  text-shadow: 0 0 1px rgba(0,0,0,1), 0 0 2px rgba(0,0,0,0.95) !important;
+}
+
+/*
+  Set the background image for the card layout selectors.
+*/
+.card-image-left {
+  background: url('images/card-image-left.png') no-repeat center/contain;
+}
+.card-image-top {
+  background: url('images/card-image-top.png') no-repeat center/contain;
+}
+.card-image-right {
+  background: url('images/card-image-right.png') no-repeat center/contain;
+}

@@ -1,0 +1,120 @@
+/* UI Style 'tile'. */
+.ssui-style--tile {
+  --ssuiSizeDefault: 140px;
+  --ssuiSizeFactor: 2;
+  --ssuiSizeLarge: calc(var(--ssuiSizeDefault) * var(--ssuiSizeFactor));
+  --ssuiTileFontSize: 1rem;
+  --ssuiTileFontSizeLarge: calc(var(--ssuiTileFontSize) * var(--ssuiSizeFactor));
+  --ssuiTileLabelText: #333333;
+  --ssuiAspectRatio: 7/5;
+  --ssuiBorderRadius: 0.75rem;
+}
+
+.gin--dark-mode .ssui-style--tile,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile,
+#drupal-off-canvas-wrapper .ssui-style--tile {
+  --ssuiTileLabelText: var(--ssuiColorGreyLight);
+}
+
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile,
+#drupal-off-canvas-wrapper .ssui-style--tile {
+  --ssuiSizeLarge: 100%;
+}
+
+.ssui-style--tile .ssui__item,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile .ssui__item,
+#drupal-off-canvas-wrapper .ssui-style--tile .ssui__item {
+  flex-basis: var(--ssuiSizeDefault);
+}
+
+.ssui-style--tile .ssui__option-wrapper,
+.ssui-style--tile .ssui__option,
+.ssui-style--tile .ssui__input,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile .ssui__option-wrapper,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile .ssui__option,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile .ssui__input,
+#drupal-off-canvas-wrapper .ssui-style--tile .ssui__option-wrapper,
+#drupal-off-canvas-wrapper .ssui-style--tile .ssui__option,
+#drupal-off-canvas-wrapper .ssui-style--tile .ssui__input {
+  border-radius: var(--ssuiBorderRadius);
+}
+
+.ssui-style--tile-size-large .ssui__item,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile-size-large .ssui__item,
+#drupal-off-canvas-wrapper .ssui-style--tile-size-large .ssui__item {
+  flex-basis: var(--ssuiSizeLarge);
+}
+
+.ssui-style--tile-size-large .ssui__option-wrapper,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile-size-large .ssui__option-wrapper,
+#drupal-off-canvas-wrapper .ssui-style--tile-size-large .ssui__option-wrapper {
+  width: 100%;
+}
+
+.ssui-style--tile .ssui__option::before,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile .ssui__option::before,
+#drupal-off-canvas-wrapper .ssui-style--tile .ssui__option::before {
+  font-size: 1.5rem;
+}
+
+.ssui-style--tile-size-large .ssui__option::before,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile-size-large .ssui__option::before,
+#drupal-off-canvas-wrapper .ssui-style--tile-size-large .ssui__option::before {
+  font-size: var(--ssuiTileFontSizeLarge);
+}
+
+
+.ssui-style--tile .ssui__input,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile .ssui__input,
+#drupal-off-canvas-wrapper .ssui-style--tile .ssui__input {
+  margin: 0;
+}
+
+.ssui-style--tile.ssui--check-icon-on .ssui__input::after,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile.ssui--check-icon-on .ssui__input::after,
+#drupal-off-canvas-wrapper .ssui-style--tile.ssui--check-icon-on .ssui__input::after {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  left: 6px;
+  top: 6px;
+  border-radius: 50%;
+  background-image: none;
+  background-position: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.ssui-style--tile.ssui--check-icon-on .ssui__input:hover::after,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile.ssui--check-icon-on .ssui__input:hover::after,
+#drupal-off-canvas-wrapper .ssui-style--tile.ssui--check-icon-on .ssui__input:hover::after {
+  border-color: var(--ssuiColorGreyDark);
+  background-color: var(--ssuiColorWhite);
+  opacity: 0.6;
+}
+
+.ssui-style--tile.ssui--check-icon-on .ssui__input:checked:after,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile.ssui--check-icon-on .ssui__input:checked::after,
+#drupal-off-canvas-wrapper .ssui-style--tile.ssui--check-icon-on .ssui__input:checked::after {
+  background-image: var(--ssuiImgSelected);
+  border-color: var(--ssuiBorderChecked);
+  background-color: transparent;
+  opacity: 1;
+}
+
+.ssui-style--tile .ssui__option-label.option,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile .ssui__option-label.option,
+#drupal-off-canvas-wrapper .ssui-style--tile .ssui__option-label.option {
+  color: var(--ssuiTileLabelText);
+  display: block;
+  font-size: 0.75rem;
+  margin: 0.25rem 0 0;
+  padding-bottom: 0;
+  padding-left: 0.25rem;
+}
+
+/* Error states. */
+.ssui-style--tile.error .ssui__item,
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui-style--tile.error .ssui__item,
+#drupal-off-canvas-wrapper .ssui-style--tile.error .ssui__item {
+  border-color: var(--ssuiErrorColor);
+}

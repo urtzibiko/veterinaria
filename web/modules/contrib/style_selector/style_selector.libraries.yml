@@ -1,0 +1,30 @@
+ssui:
+  version: VERSION
+  css:
+    component:
+      dist/css/base/ssui.css: {}
+  dependencies:
+    - style_selector/variables
+
+variables:
+  version: VERSION
+  css:
+    theme:
+      dist/css/base/variables.css: {}
+      dist/css/base/font.css: {}
+
+widget_compact:
+  version: VERSION
+  css:
+    theme:
+      dist/css/widget/compact.css: {}
+  dependencies:
+    - style_selector/ssui
+
+widget_tile:
+  version: VERSION
+  css:
+    theme:
+      dist/css/widget/tile.css: {}
+  dependencies:
+    - style_selector/ssui

@@ -1,0 +1,7 @@
+version: '3.6'
+services:
+  web:
+    environment:
+      - PHP_IDE_CONFIG=serverName=veterinaria.ddev.site
+      - DRUSH_ALLOW_XDEBUG=1
+      - PHP_MEMORY_LIMIT=-1

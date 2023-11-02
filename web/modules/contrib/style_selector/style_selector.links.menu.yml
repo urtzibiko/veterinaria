@@ -1,0 +1,5 @@
+style_selector.admin_config:
+  title: 'Style Selector'
+  route_name: style_selector.module_config_form
+  parent: system.admin_config_ui
+  description: 'Configure Style Selector.'

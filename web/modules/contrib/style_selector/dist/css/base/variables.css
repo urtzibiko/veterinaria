@@ -1,0 +1,47 @@
+.ssui {
+  --ssuiColorRed: #dc2323;
+  --ssuiColorGreen: #26a769;
+  --ssuiColorBlue: #003ecc;
+  --ssuiColorBlack: #232429;
+  --ssuiColorGrey: #8e929c;
+  --ssuiColorGreyDark: #47474c;
+  --ssuiColorGreyLight: #d2d3d3;
+  --ssuiColorWhite: #ffffff;
+  --ssuiErrorColor: var(--ssuiColorRed);
+  --ssuiBorderRadius: 4px;
+  --ssuiImgSelected: url("../../media/dot-circle.svg");
+  --ssuiImgAlphaGrid: url("../../media/alpha-grid.png");
+  --ssuiOptionBgColor: transparent;
+  --ssuiOffsetHaloColor: var(--ssuiColorWhite);
+  --ssuiEmptyIconColor: currentColor;
+  --ssuiItemSpacing: 0.75rem;
+  --ssuiSizeDefault: 36px;
+  --ssuiSizeLarge: 48px;
+  --ssuiAspectRatio: 1/1;
+  --ssuiBorder: var(--ssuiColorGrey);
+  --ssuiBorderHover: var(--ssuiColorBlack);
+  --ssuiBorderChecked: var(--ssuiColorBlue);
+  --ssuiDuration: .15s;
+  --ssuiEasing: cubic-bezier(.37,.18,.32,1);
+  --ssuiTransition: var(--ssuiDuration) var(--ssuiEasing);
+}
+
+.ssui.ssui--multiple {
+  --ssuiImgSelected: url("../../media/check-circle.svg");
+}
+
+#drupal-off-canvas:not(.drupal-off-canvas-reset) .ssui,
+#drupal-off-canvas-wrapper .ssui {
+  --ssuiOffsetHaloColor: var(--off-canvas-background-color, #444);
+  --ssuiBorder: var(--off-canvas-border-color, #666);
+}
+
+.ssui--gin {
+  --ssuiBorderChecked: var(--colorGinPrimary);
+}
+
+.gin--dark-mode .ssui,
+#drupal-off-canvas .gin--dark-mode .ssui {
+  --ssuiEmptyIconColor: #222;
+  --ssuiOptionBgColor: var(--ssuiColorGrey);
+}

@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Contains install and uninstall functions for Style Selector Demontration.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Copy demo config to style_selector.settings.
+ */
+function style_selector_demo_install($is_syncing) {
+  if ($is_syncing) {
+    return;
+  }
+
+  $config = \Drupal::service('config.factory')->getEditable('style_selector.settings');
+  $demo_config = \Drupal::service('style_selector_demo.util')->getDemoConfigArray();
+
+  foreach ($demo_config as $key => $value) {
+    $new_value = array_unique(array_merge($config->get($key) ?? [], $value));
+    $config->set($key, $new_value);
+  }
+  $config->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Remove demo config from style_selector.settings.
+ */
+function style_selector_demo_uninstall($is_syncing) {
+  if ($is_syncing) {
+    return;
+  }
+
+  $config = \Drupal::service('config.factory')->getEditable('style_selector.settings');
+  $demo_config = \Drupal::service('style_selector_demo.util')->getDemoConfigArray();
+
+  foreach ($demo_config as $shared_key => $demo_values) {
+    if ($current_values = $config->get($shared_key)) {
+      foreach ($demo_values as $value_to_remove) {
+        if (($delete_key = array_search($value_to_remove, $current_values)) !== FALSE) {
+          unset($current_values[$delete_key]);
+        }
+      }
+      $config->set($shared_key, $current_values);
+    }
+  }
+  $config->save();
+}
