@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Background Image module install/updates.
+ */
+
+use Drupal\background_image\BackgroundImageInterface;
+
+/**
+ * Ensure all entity targets are stored using UUIDs.
+ */
+function background_image_update_8401() {
+  // @see https://www.drupal.org/project/background_image/issues/3032110
+  $entityTypeManager = \Drupal::entityTypeManager();
+  $dataTable = $entityTypeManager->getDefinition('background_image')->getDataTable();
+
+  $results = \Drupal::database()
+    ->select($dataTable, 'data')
+    ->fields('data', ['bid', 'target'])
+    ->condition('type', BackgroundImageInterface::TYPE_ENTITY)
+    ->execute()
+    ->fetchAllKeyed();
+
+  foreach ($results as $bid => $target) {
+    try {
+      list($entityTypeId, $entityId) = explode(':', "$target:");
+
+      // Skip invalid records.
+      if (!$entityTypeId || !$entityId || !is_numeric($entityId)) {
+        continue;
+      }
+
+      $uuid = $entityTypeManager->getStorage($entityTypeId)->load($entityId)->uuid();
+
+      \Drupal::database()
+        ->update($dataTable)
+        ->condition('bid', $bid)
+        ->fields(['target' => "$entityTypeId:$uuid"])
+        ->execute();
+    }
+    catch (\Exception $exception) {
+      // Intentionally do nothing. Meant to be a passive/non-destructive update.
+    }
+  }
+}

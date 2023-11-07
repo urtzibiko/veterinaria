@@ -1,0 +1,17 @@
+.c-generico {
+  h2 {
+    color: #3fa21c;
+    font-size: 3em;
+    font-weight: 900;
+  }
+  &__entradilla {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-left: 30px;
+  }
+  &__texto {
+    margin-left: 30px;
+    margin-bottom: 50px;
+    font-size: 1.2em;
+  }
+}

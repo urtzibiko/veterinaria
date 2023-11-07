@@ -1,0 +1,14 @@
+name: Background Image
+description: 'Provides an integrated UI for displaying background images on a site.'
+type: module
+configure: background_image.admin
+core_version_requirement: ^9 || ^10
+php: ^8
+dependencies:
+  - drupal:field
+  - drupal:image
+
+# Information added by Drupal.org packaging script on 2022-12-18
+version: '2.0.1'
+project: 'background_image'
+datestamp: 1671354682
