@@ -56,6 +56,13 @@
     </div>
   </div>
   <div class="c-hero__image">
-    <img src="https://placedog.net/1600/800?id=1" alt="Imagen del hero" />
+    {% if content.field_imagen_hero_v2['#items'] %}
+
+      {{ content.field_imagen_hero_v2 }}
+
+    {% endif %}
   </div>
+{#  <div class="c-hero__image">
+    <img src="https://placedog.net/1600/800?id=1" alt="Imagen del hero" />
+  </div>#}
 </div>

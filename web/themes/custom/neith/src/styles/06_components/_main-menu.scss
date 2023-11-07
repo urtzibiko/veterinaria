@@ -5,7 +5,7 @@
   background-color: #3fa21c;
   border-radius: 30px 30px 0 0;
   font-size: 2em;
-  font-weight: bold;
+  width: 95%;
   li {
     margin: 25px 50px 22px 50px;
     color: white;
@@ -18,7 +18,7 @@
       padding: 20px;
       &:link {
         color: white;
-        font-weight: bold;
+        font-weight: 600;
       }
       &:visited {
         color: white;

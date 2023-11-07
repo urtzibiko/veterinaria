@@ -5,7 +5,11 @@
 
 <div {{ attributes.addClass('c-destacado', flippedClass) }}>
   <div class="c-destacado__image">
-    <img src="https://placedog.net/1600/800?id=1" alt="Imagen del destacado" />
+    {% if content.field_imagen_destacado['#items'] %}
+
+      {{ content.field_imagen_destacado }}
+
+    {% endif %}
   </div>
   <div class="c-destacado__main">
     <div class="c-destacado__main__titulo">

@@ -1,24 +1,30 @@
 .c-hero {
   display: flex;
   font-size: 2em;
-  width: 100%;
+  height: auto;
+  justify-content: center;
   &__image {
     float: right;
-    width: 50%;
+    width: auto;
+    img {
+      border-radius: 200px;
+      object-fit: contain;
+    }
   }
   &__main {
     float: left;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    width: 50%;
+    object-fit: contain;
     background-color: whitesmoke;
     border-radius: 150px;
     border: 10px solid #a4ae9e;
+    width: 50%;
 
     &__text {
       margin-right: 4vw;
-      margin-left: 14vw;
+      margin-left: 10vw;
       color: #3fa21c;
       block-size: fit-content;
       font-weight: 900;
@@ -48,7 +54,7 @@
         text-decoration: none;
         &:link {
           color: white;
-          font-weight: bold;
+          font-weight: 600;
         }
         &:visited {
           color: white;
